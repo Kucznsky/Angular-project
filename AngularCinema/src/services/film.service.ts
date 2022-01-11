@@ -27,6 +27,10 @@ export class FilmService {
     return this._http.get<IFilm[]>(`${ApiURL}Films`, Credentials)
   }
   public getFilm(id: number): Observable<IFilm> {
+    console.warn("DEBUG: Using mock-ups")
+    return new Observable( function subscribe(subscriber){ subscriber.next(
+            { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true }
+          )})
     return this._http.get<IFilm>(`${ApiURL}Film/${id}`, Credentials)
   }
   public getList(ids: number[]): Observable<IFilm> {

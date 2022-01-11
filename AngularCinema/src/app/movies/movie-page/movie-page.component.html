@@ -1,0 +1,10 @@
+<div *ngIf="movie; else Loading">
+    <h1>
+        {{movie.title}}
+    </h1>
+    Lenght: {{movie.screeningTime}} minutes
+</div>
+
+<ng-template #Loading>
+    Loading...
+</ng-template>

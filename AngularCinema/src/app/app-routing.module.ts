@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BuyTicketComponent } from './buy-ticket/buy-ticket.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MoviePageComponent } from './movies/movie-page/movie-page.component';
 import { MoviesComponent } from './movies/movies.component';
 import { RoomsComponent } from './rooms/rooms.component';
-import { ShowingsComponent } from './showings/showings.component';
+import { ScreeningsComponent as ScreeningsComponent } from './screenings/screenings.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'rooms', component: RoomsComponent },
   { path: 'movies', component: MoviesComponent },
-  { path: 'showings', component: ShowingsComponent },
+  { path: 'screenings', component: ScreeningsComponent },
+
+  { path: 'movie/:id', component: MoviePageComponent },
+  { path: 'buyTicket/:screeningID', component: BuyTicketComponent },
+
   /* Wszystkie ścieżki trzeba dawać przed tą ścieżką. */
   { path: '**', redirectTo: 'home' },
 ];

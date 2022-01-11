@@ -3,13 +3,14 @@ import { ScreeningService } from 'src/services/screening.service';
 import { IScreening } from 'src/models/IScreening';
 
 @Component({
-  selector: 'app-showings',
-  templateUrl: './showings.component.html',
-  styleUrls: ['./showings.component.scss']
+  selector: 'app-screenings',
+  templateUrl: './screenings.component.html',
+  styleUrls: ['./screenings.component.scss']
 })
-export class ShowingsComponent implements OnInit {
+export class ScreeningsComponent implements OnInit {
   title = 'screening'
   screenings: IScreening[] = [];
+  
 
   constructor(private _screeningService: ScreeningService) { }
 

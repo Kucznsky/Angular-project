@@ -1,0 +1,20 @@
+<article class='list'>
+    <h1>Screenings:</h1>
+    <section *ngFor="let screening of screenings" class='list_element'>
+        <!-- <app-screening [screening]='screening'></app-screening> -->
+        <a [routerLink]="['/movie', screening.film.id]" class='link3 listFirstLine'>{{screening.film.title}}</a>
+        <p class='listSmallerText'>Room: {{screening.roomID}}</p>
+        <p class='listSmallerText'>Date: {{screening.beginsAt | date: 'd MMMM yyyy'}}</p>
+        <p class='listSmallerText'>Hour: {{screening.beginsAt | date: 'h:mm'}}</p>
+        <p class='listSmallerText'>Sold tickets: {{screening.soldTickets}}</p>
+        <p class='listSmallerText'>Available tickets: {{getAvailableTickets(screening)}}</p>
+        
+        <a *ngIf="getAvailableTickets(screening)"
+                [routerLink]="['/buyTicket', screening.id]"
+                class="link3" style="display: flex; justify-content: center;">
+            <br />
+            BUY TICKET
+        </a>
+        <!-- <p class='listSmallerText'>Chairs taken:</p> -->
+    </section>
+</article>

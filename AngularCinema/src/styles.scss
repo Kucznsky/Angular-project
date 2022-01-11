@@ -4,12 +4,19 @@
   font-size: 18px;
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif, tahoma;
+  // font-family: century-gothic;
 }
 
 body {
   color:#ddd;
   background-color: #222;
   padding-top: 0.5%;
+}
+
+h1 {
+  color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar {
@@ -49,7 +56,7 @@ body {
   color: #fff;
   cursor: pointer;
   text-shadow: 0 1px 0 #222;
-  background-color: #3b5999;
+  background-color: #B52E31;
 }
 
 .link2 {
@@ -74,7 +81,7 @@ body {
   text-decoration: none;
   color: #555;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: inherit;
 }
 
 .link3:hover {
@@ -119,4 +126,17 @@ body {
   transition: 0.9s;
   transition: ease;
   color: #fff;
+}
+
+.listFirstLine {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  color: #eee;
+}
+
+.listSmallerText {
+  color: #ddd;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
 }
