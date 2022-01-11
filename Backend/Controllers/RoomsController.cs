@@ -26,7 +26,7 @@ namespace Backend.Controllers
         {
             return _context.Rooms;
         }
-        [HttpGet("/Room/{index}")]
+        [HttpGet("Room/{index}")]
         public Room Get(int index)
         {
             return _context.Rooms.Find(index);

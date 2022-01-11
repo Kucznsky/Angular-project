@@ -1,0 +1,12 @@
+<article class='list'>
+    Screenings:
+    <section *ngFor="let screening of screenings" class='list_element'>
+        <p class='listFirstLine'>Movie: {{screening.film.title}}</p>
+        <p class='listSmallerText'>Room: {{screening.roomID}}</p>
+        <p class='listSmallerText'>Date: {{screening.beginsAt}}</p>
+        <p class='listSmallerText'>Hour: {{screening.beginsAt}}</p>
+        <p class='listSmallerText'>Sold tickets: {{screening.soldTickets}}</p>
+        <p class='listSmallerText'>Available tickets: {{getAvailableTickets(screening)}}</p>
+        <!-- <p class='listSmallerText'>Chairs taken:</p> -->
+    </section>
+</article>
