@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ScreeningService } from 'src/services/screening.service';
 import { IScreening } from 'src/models/IScreening';
 
@@ -8,9 +8,9 @@ import { IScreening } from 'src/models/IScreening';
   styleUrls: ['./screenings.component.scss']
 })
 export class ScreeningsComponent implements OnInit {
-  title = 'screening'
-  screenings: IScreening[] = [];
-  
+  // title = 'screening'
+  @Input() screenings: IScreening[] = [];
+
 
   constructor(private _screeningService: ScreeningService) { }
 
