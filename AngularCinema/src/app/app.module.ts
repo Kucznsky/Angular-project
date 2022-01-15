@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MoviePageComponent } from './movies/movie-page/movie-page.component';
 import { MovieComponent } from './movies/movie/movie.component';
 import { ScreeningPageComponent } from './screenings/screening-page/screening-page.component';
+import { MatListModule } from '@angular/material/list';
+import { ScreeningElementComponent } from './screenings/screening-element/screening-element.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +35,14 @@ import { ScreeningPageComponent } from './screenings/screening-page/screening-pa
     EditShowingsComponent,
     MoviePageComponent,
     MovieComponent,
-    ScreeningPageComponent
+    ScreeningPageComponent,
+    ScreeningElementComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

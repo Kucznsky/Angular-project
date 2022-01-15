@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Backend.Migrations
 {
     [DbContext(typeof(AppDBContext))]
@@ -13,8 +15,7 @@ namespace Backend.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.12");
+            modelBuilder.HasAnnotation("ProductVersion", "5.0.12");
 
             modelBuilder.Entity("Backend.Models.Film", b =>
                 {
@@ -33,7 +34,7 @@ namespace Backend.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Films");
+                    b.ToTable("Films", (string)null);
 
                     b.HasData(
                         new
@@ -77,7 +78,7 @@ namespace Backend.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Rooms", (string)null);
 
                     b.HasData(
                         new
@@ -116,7 +117,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("RoomID");
 
-                    b.ToTable("Screenings");
+                    b.ToTable("Screenings", (string)null);
                 });
 
             modelBuilder.Entity("Backend.Models.TakenSeat", b =>
@@ -129,7 +130,7 @@ namespace Backend.Migrations
 
                     b.HasKey("ScreeningID", "SeatID");
 
-                    b.ToTable("TakenSeats");
+                    b.ToTable("TakenSeats", (string)null);
                 });
 
             modelBuilder.Entity("Backend.Models.Screening", b =>

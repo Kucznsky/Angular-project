@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const ApiURL: string = "localhost:4200/api/"
+const ApiURL: string = "https://localhost:5001/"
 const Credentials = {
     mode: 'cors',
     headers: new HttpHeaders({

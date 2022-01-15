@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Backend.Data;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Backend.Controllers
@@ -22,7 +23,10 @@ namespace Backend.Controllers
         [HttpGet]
         public IEnumerable<Screening> GetAll()
         {
-            return _context.Screenings;
+            return _context.Screenings
+                .Where(item => item.BeginsAt > DateTime.Now)
+                .Include(item => item.Film)
+                .Include(item => item.Room);
         }
         [HttpGet("/Screening/{index}")]
         public Screening Get(int index)
@@ -33,7 +37,7 @@ namespace Backend.Controllers
         public IEnumerable<Screening> GetFilmScreenings(int filmID)
         {
             return _context.Screenings
-                    .Where(screening => screening.FilmID == filmID);
+                    .Where(screening => screening.FilmID == filmID && screening.BeginsAt > DateTime.Now);
         }
 
         [HttpPost]
@@ -92,6 +96,23 @@ namespace Backend.Controllers
                     .AsEnumerable()
                     .Where(item => item.BeginsAt > DateTime.Now
                             && (item.BeginsAt - new TimeSpan(0, _context.Films.Find(item.FilmID).ScreeningTime, 0)) < DateTime.Now);
+        }
+
+        [HttpPost("DEBUG_AddScreenings")]
+        public ActionResult DEBUG_GetScreenings()
+        {
+            // var film = _context.Films.Find(1);
+            // var room = _context.Rooms.Find(1);
+            _context.AddRange(
+                new List<Screening> {
+                    new Screening { ID= 10_001, FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now },
+                    new Screening { ID= 10_002, FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now + new TimeSpan(12, 0, 0) },
+                    new Screening { ID= 10_003, FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now + new TimeSpan(1, 6, 0, 0) },
+                }.ToArray()
+            );
+            _context.SaveChanges();
+            // return 
+            return Ok();
         }
     }
 }

@@ -1,1 +1,32 @@
-<p>buy-ticket works!</p>
+<article>
+    <section>
+        <h1>
+            Pick Seat:
+        </h1>
+    </section>
+    <section class='list'>
+        <div 
+                *ngFor="let seat of seats"
+                class='list_element'
+                [ngClass]="{
+                    'takenSeat': !seat.free,
+                    'selectedSeat': isSelected(seat.num)
+                }"
+                (click)=onSelectSeat(seat.num)>
+            <p
+                    class='noselect'>
+                {{seat.num}}
+            </p>
+        </div>
+    </section>
+    <section>
+        <button mat-button
+                [disabled]="!currSeat"
+                (click)="onBuyTicket()"
+                >
+            Buy Ticket
+        </button>
+    </section>
+</article>
+
+<!-- [ngStyle]={ 'background-color': seat.free ? 'inherit' : (isSelected(seat.num) ? 'green' : 'red') }> -->

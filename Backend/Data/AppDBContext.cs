@@ -28,18 +28,18 @@ namespace Backend.Data
             base.OnModelCreating(builder);
 
             builder.Entity<Screening>()
-                    .HasOne<Film>()
+                    .HasOne<Film>(e => e.Film)
                     .WithMany()
                     .HasForeignKey(e => e.FilmID);
             builder.Entity<Screening>()
-                    .HasOne<Room>()
+                    .HasOne<Room>(e => e.Room)
                     .WithMany()
                     .HasForeignKey(e => e.RoomID);
 
             builder.Entity<TakenSeat>()
                     .HasKey(e => new { e.ScreeningID, e.SeatID });
             builder.Entity<TakenSeat>()
-                    .HasOne<Screening>()
+                    .HasOne<Screening>(e => e.Screening)
                     .WithMany()
                     .HasForeignKey(e => e.ScreeningID);
 

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IFilm } from 'src/models/IFilm';
 
-const ApiURL: string = "localhost:4200/api/"
+const ApiURL: string = "https://localhost:5001/"
 const Credentials = {
     mode: 'cors',
     headers: new HttpHeaders({
@@ -19,18 +19,18 @@ export class FilmService {
   constructor(private _http: HttpClient) { }
 
   public getFilms(): Observable<IFilm[]> {
-    console.warn("DEBUG: Using mock-ups")
-    return new Observable( function subscribe(subscriber){ subscriber.next([
-            { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true },
-            { id: 2, title: "The Room", screeningTime: 120, isShowing: true },
-          ]) })
+    // console.warn("DEBUG: Using mock-ups")
+    // return new Observable( function subscribe(subscriber){ subscriber.next([
+    //         { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true },
+    //         { id: 2, title: "The Room", screeningTime: 120, isShowing: true },
+    //       ]) })
     return this._http.get<IFilm[]>(`${ApiURL}Films`, Credentials)
   }
   public getFilm(id: number): Observable<IFilm> {
-    console.warn("DEBUG: Using mock-ups")
-    return new Observable( function subscribe(subscriber){ subscriber.next(
-            { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true }
-          )})
+    // console.warn("DEBUG: Using mock-ups")
+    // return new Observable( function subscribe(subscriber){ subscriber.next(
+    //         { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true }
+    //       )})
     return this._http.get<IFilm>(`${ApiURL}Film/${id}`, Credentials)
   }
   public getList(ids: number[]): Observable<IFilm> {

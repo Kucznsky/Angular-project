@@ -9,7 +9,9 @@ namespace Backend.Models
         [Key]
         public int ID { get; set; }
         public int FilmID { get; set; }
+        public virtual Film Film { get; set; }
         public int RoomID { get; set; }
+        public virtual Room Room { get; set; }
         public int SoldTickets { get; set; }
         // public ICollection<int> TakenSeats { get; set; }
 
