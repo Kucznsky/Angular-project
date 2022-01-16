@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { IScreening } from 'src/models/IScreening';
 
 @Component({
   selector: 'app-screening-element',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./screening-element.component.scss']
 })
 export class ScreeningElementComponent implements OnInit {
-
+  @Input() screenings: IScreening[] = [];
   constructor() { }
 
   ngOnInit(): void {
