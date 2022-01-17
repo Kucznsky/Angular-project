@@ -18,6 +18,7 @@ export class MoviesComponent implements OnInit {
       response => {console.log("Fetched films from API", response); this.films = response ?? []},
       error => console.error(error)
     )
+    // this.films = this._filmService.Films
   }
 
 }

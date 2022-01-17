@@ -1,8 +1,14 @@
 <div *ngIf="movie; else Loading">
-    <h1>
-        {{movie.title}}
-    </h1>
-    Lenght: {{movie.screeningTime}} minutes
+    <div class="center">
+        <fieldset>
+                <legend>
+                    {{movie.title}}
+                </legend>
+                <p>Lenght: {{movie.screeningTime}} minutes</p>
+                <br/>
+                <img style="margin-top: 2rem; width: 20rem" src="https://i.redd.it/85ij3dpgdos71.png"/>
+        </fieldset>
+    </div>
 </div>
 
 <ng-template #Loading>

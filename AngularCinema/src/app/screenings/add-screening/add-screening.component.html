@@ -1,0 +1,41 @@
+<div class='center'>
+    <fieldset>
+        <legend>Add new screening</legend>
+        <form [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
+            <mat-form-field appearance="fill">
+                <mat-label>Film</mat-label>
+                <mat-select formControlName='film'>
+                    <mat-option *ngFor="let film of filmOptions" [value]="film.id">
+                        {{film.title}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br/>
+            <mat-form-field appearance="fill">
+                <mat-label>Room</mat-label>
+                <mat-select formControlName='room'>
+                    <mat-option *ngFor="let room of roomOptions" [value]="room">
+                        <pre>{{room.id}}   Capacity: {{room.capacity}}</pre>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br />
+            <span class="center"><input formGroupName='beginsAt' formControlName="date" id="date" type="date" /></span>
+            <br />
+            <!-- <mat-form-field>
+            </mat-form-field> -->
+            <br />
+            <span class="center">
+                <button type="submit" class='confirm_btn'>
+                    Submit
+                </button>
+            </span>
+        </form>
+    </fieldset>
+    <!-- <input type='' [form]> -->
+    <!-- <<mat-select placeholder="Placeholder" [(ngModel)]="selectedValue" name="item">
+        <mat-option *ngFor="let item of items" [value]="item.value">
+            {{item.viewValue}}
+        </mat-option>
+    </mat-select> -->
+</div>

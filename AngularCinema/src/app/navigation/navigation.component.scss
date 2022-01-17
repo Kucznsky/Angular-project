@@ -5,16 +5,18 @@
   padding: 30px 10%;
   border-bottom: solid;
   min-width: 37rem;
-  overflow:auto;
+  overflow: auto;
+  background-color: #111;
   border-color: rgba(255, 255, 255, 0.2);
 }
 
 .navbar_links {
+  margin-top: 1rem;
   list-style: none;
   gap: 1rem;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .navbar_links li {
@@ -36,7 +38,7 @@
   color: #fff;
   cursor: pointer;
   text-shadow: 0 1px 0 #222;
-  background-color: #B52E31;
+  background-color: #b52e31;
 }
 
 /*.enabled {

@@ -1,14 +1,18 @@
-<div>
-    <h1 style="margin-top: 3rem;">
-        MOVIES:
-    </h1>
-    <article class='list'>
-        <section *ngFor="let film of films" class='list_element'>
-            <!-- <a [[routerLink]="['/routePath']" routerLinkActive="router-link-active" ]> -->
-            <a style="color:inherit; text-decoration: none" [routerLink]="['/movie', film.id]">
-                <p class='listFirstLine'>Movies: {{film.title}}</p>
-                <p class='listSmallerText'>Screening: {{film.screeningTime}} minutes</p>
-            </a>
-        </section>
-    </article>
-</div>
+<article>
+    <section class="center">
+        <h1>
+            MOVIES:
+        </h1>
+    </section>
+    <section class="center">
+        <div class='list'>
+            <div *ngFor="let film of films" class='list_element'>
+                <!-- <a [[routerLink]="['/routePath']" routerLinkActive="router-link-active" ]> -->
+                <a style="color:inherit; text-decoration: none" [routerLink]="['/movie', film.id]">
+                    <p class='listFirstLine'>Movies: {{film.title}}</p>
+                    <p class='listSmallerText'>Screening: {{film.screeningTime}} minutes</p>
+                </a>
+            </div>
+        </div>
+    </section>
+</article>

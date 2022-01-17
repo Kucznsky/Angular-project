@@ -1,6 +1,16 @@
-<article class='list'>
-    <h1>Screenings:</h1>
-    <section *ngFor="let screening of screenings" class='list_element'>
-        <app-screening-element [screenings]=screenings></app-screening-element>
-    </section>
-</article>
+<div>
+    <h1 class="center">Screenings:</h1>
+    <span class="center">
+        <a [routerLink]="[ '/screenings/new' ]" class='link2'>
+            
+            New Screening <i class="fas fa-video"></i><i class="fas fa-plus smol"></i>
+        </a>
+    </span>
+    <div class="center">
+        <article class='list'>
+            <section *ngFor="let screening of screenings" class='list_element'>
+                <app-screening-element [screening]=screening></app-screening-element>
+            </section>
+        </article>
+    </div>
+</div>

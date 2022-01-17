@@ -8,15 +8,13 @@
 }
 
 body {
-  color:#ddd;
+  color: #ddd;
   background-color: #222;
-  padding-top: 0.5%;
+  margin: auto;
 }
 
 h1 {
   color: white;
-  display: flex;
-  justify-content: center;
 }
 
 .navbar {
@@ -56,7 +54,7 @@ h1 {
   color: #fff;
   cursor: pointer;
   text-shadow: 0 1px 0 #222;
-  background-color: #B52E31;
+  background-color: #b52e31;
 }
 
 .link2 {
@@ -105,9 +103,10 @@ h1 {
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-  /*background-color: #111;
+  /* background-color: #111;
   padding: 5%;
-  opacity: 20px;*/
+  opacity: 0.8;
+  border-radius: 10px;*/
 }
 
 .list {
@@ -124,8 +123,8 @@ h1 {
 }
 
 .list_element:hover {
-  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2),
-    0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.2),
+    0 0 20px 0 rgba(255, 255, 255, 0.19);
   transition: 0.9s;
   transition: ease;
   color: #fff;
@@ -142,4 +141,92 @@ h1 {
   font-weight: bold;
   font-size: 0.9rem;
   margin-top: 0.25rem;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  display: flex;
+  justify-content: center;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  border: solid;
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+fieldset legend {
+  width: inherit;
+  padding: 0 10px;
+  border-bottom: none;
+  text-align: left;
+  font-weight: bold;
+}
+
+.confirm_btn {
+  position: relative;
+  background-color: #444;
+  border: none;
+  color: white;
+  margin-top: 1rem;
+  padding: 15px 24px;
+  box-shadow: -5px 5px 0 #333;
+  outline: none;
+}
+
+.confirm_btn::after {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 0;
+  width: 0;
+  border: solid 5px transparent;
+  border-top: solid 5px #333;
+  border-bottom-width: 0;
+  right: 0px;
+  bottom: -5px;
+}
+
+.confirm_btn::before {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 0;
+  width: 0;
+
+  border: solid 5px transparent;
+  border-right: solid 5px #333;
+  border-left-width: 0;
+  top: 0;
+  left: -5px;
+}
+
+.confirm_btn:hover {
+  background-color: #555;
+}
+
+.confirm_btn:active {
+  background: #3b5999;
+  top: 3px;
+  left: -3px;
+  box-shadow: -3px 3px 0 rgb(45, 71, 128);
+  outline: white;
+}
+
+.confirm_btn:active::before {
+  border: solid 3px transparent;
+  border-right: solid 3px rgb(45, 71, 128);
+  border-left-width: 0;
+  left: -3px;
+}
+
+.confirm_btn:active::after {
+  border: solid 3px transparent;
+  border-top: solid 3px rgb(45, 71, 128);
+  border-bottom-width: 0;
+  bottom: -3px;
 }

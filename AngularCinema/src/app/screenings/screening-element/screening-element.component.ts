@@ -7,10 +7,14 @@ import { IScreening } from 'src/models/IScreening';
   styleUrls: ['./screening-element.component.scss']
 })
 export class ScreeningElementComponent implements OnInit {
-  @Input() screenings: IScreening[] = [];
+  @Input() screening!: IScreening;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getAvailableTickets(screening: IScreening) {
+    return screening.room.capacity - screening.soldTickets
+  }
+  
 }

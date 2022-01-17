@@ -18,6 +18,9 @@ export class FilmService {
 
   constructor(private _http: HttpClient) { }
 
+  private films: IFilm[] = []
+  public get Films(): IFilm[] { if(this.films.length <= 0) this.fetchFilms(); return this.films }
+  
   public getFilms(): Observable<IFilm[]> {
     // console.warn("DEBUG: Using mock-ups")
     // return new Observable( function subscribe(subscriber){ subscriber.next([
@@ -25,6 +28,12 @@ export class FilmService {
     //         { id: 2, title: "The Room", screeningTime: 120, isShowing: true },
     //       ]) })
     return this._http.get<IFilm[]>(`${ApiURL}Films`, Credentials)
+  }
+  public fetchFilms(): void {
+    this._http.get<IFilm[]>(`${ApiURL}Films`, Credentials).subscribe(
+      response => this.films = response,
+      error => console.error(error)
+    )
   }
   public getFilm(id: number): Observable<IFilm> {
     // console.warn("DEBUG: Using mock-ups")

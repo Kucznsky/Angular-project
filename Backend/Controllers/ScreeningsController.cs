@@ -45,12 +45,12 @@ namespace Backend.Controllers
         {
             if (screenings is null || screenings.Any() is false)
                 return BadRequest(new ArgumentNullException("There was no screenings provided to add to database."));
-            
+
             // Filter invalid screenings.
             var screenings_filtered = screenings.Where(item =>
                             _context.Rooms.Find(item.RoomID) is not null
                             && _context.Films.Find(item.FilmID) is not null);
-            
+
             _context.AddRange(screenings_filtered);
             _context.SaveChanges();
 
@@ -74,7 +74,7 @@ namespace Backend.Controllers
             screeningToUpdate.FilmID = screening.FilmID;
             screeningToUpdate.RoomID = screening.RoomID;
             _context.SaveChanges();
-            
+
             return Ok();
         }
 
@@ -86,7 +86,7 @@ namespace Backend.Controllers
         {
             if (day.HasValue is false)
                 return BadRequest(new ArgumentNullException("You have to provide viable day as argument."));
-            
+
             return Ok(_context.Screenings.Where(item => item.BeginsAt.Day == day.Value.Day));
         }
         [HttpGet("ScreeningNow")]
@@ -105,9 +105,9 @@ namespace Backend.Controllers
             // var room = _context.Rooms.Find(1);
             _context.AddRange(
                 new List<Screening> {
-                    new Screening { ID= 10_001, FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now },
-                    new Screening { ID= 10_002, FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now + new TimeSpan(12, 0, 0) },
-                    new Screening { ID= 10_003, FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now + new TimeSpan(1, 6, 0, 0) },
+                    new Screening { FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now },
+                    new Screening { FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now + new TimeSpan(12, 0, 0) },
+                    new Screening { FilmID= 1, RoomID= 1, SoldTickets= 0, BeginsAt= DateTime.Now + new TimeSpan(1, 6, 0, 0) },
                 }.ToArray()
             );
             _context.SaveChanges();
