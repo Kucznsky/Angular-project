@@ -16,12 +16,7 @@ export class RoomsComponent implements OnInit {
   
   ngOnInit(): void {
     this._roomService.getRooms().subscribe(
-      response => { console.log("Fetched rooms off API.", response); this.rooms = response ?? []},
-      error => console.error(error)
-    )
-
-    this._roomService.getRooms_CORS().subscribe(
-      response => { console.warn("DEBUG: Debuging cors.") },
+      response => this.rooms = response,
       error => console.error(error)
     )
   }

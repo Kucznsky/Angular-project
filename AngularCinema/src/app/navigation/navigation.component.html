@@ -1,17 +1,25 @@
 <header class='navbar'>
     <nav class='navbar_links'>
         <ul>
-            <li>
-                <a class='link' routerLink='/home' id="home">Home Page <i class="fas fa-home"></i></a>
+            <li >
+                <a class='link' routerLink='/home' id="home" 
+                    [ngClass]="{'link_hover': Path=='/home'}"
+                ><span class="noselect">Home Page <i class="fas fa-home"></i></span></a>
             </li>
-            <li>
-                <a class='link' routerLink='/screenings'  id="screenings">Screenings <i class="fas fa-video"></i></a>
+            <li >
+                <a class='link' routerLink='/screenings' id="screenings" 
+                    [ngClass]="{'link_hover': Path=='/screenings'}"
+                ><span class="noselect">Screenings <i class="fas fa-video"></i></span></a>
             </li>
-            <li>
-                <a class='link' routerLink='/movies' id="movies">Movies <i class="fas fa-film"></i></a>
+            <li >
+                <a class='link' routerLink='/movies' id="movies" 
+                    [ngClass]="{'link_hover': Path=='/movies'}"
+                ><span class="noselect">Movies <i class="fas fa-film"></i></span></a>
             </li>
-            <li>
-                <a class='link' routerLink='/rooms' id="rooms">Rooms <i class="fas fa-couch"></i></a>
+            <li >
+                <a class='link' routerLink='/rooms' id="rooms" 
+                    [ngClass]="{'link_hover': Path=='/rooms'}"
+                ><span class="noselect">Rooms <i class="fas fa-couch"></i></span></a>
             </li>
         </ul>
     </nav>

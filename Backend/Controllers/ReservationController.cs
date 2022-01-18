@@ -41,11 +41,11 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult PostReservation(int? screeningID, short? seatNum)
+        public ActionResult<Screening> PostReservation(int? screeningID, short? seatNum)
         {
-            if(screeningID.HasValue is false)
+            if (screeningID.HasValue is false)
                 return BadRequest(new ArgumentException("Expected value for screening parameter."));
-            if(seatNum.HasValue is false)
+            if (seatNum.HasValue is false)
                 return BadRequest(new ArgumentException("Expected value for seat parameter."));
 
             var screening = _context.Screenings.Find(screeningID);
@@ -63,14 +63,14 @@ namespace Backend.Controllers
                 return BadRequest("Screening of requested film was put off listings.");
 
             var takenSeat = _context.TakenSeats.Find(screeningID, seatNum);
-            if(takenSeat is not null)
+            if (takenSeat is not null)
                 return BadRequest("Chosen seat is already taken.");
 
-            
+
             _context.TakenSeats.Add(new TakenSeat(screeningID.Value, seatNum.Value));
             screening.SoldTickets++;
             _context.SaveChanges();
-            return Ok("Ticket successfully bought!");
+            return Ok(screening);
         }
     }
 }

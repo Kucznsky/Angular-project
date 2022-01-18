@@ -7,21 +7,27 @@
     <section class='list'>
         <div 
                 *ngFor="let seat of seats"
-                class='list_element'
-                [ngClass]="{
-                    'takenSeat': !seat.free,
-                    'selectedSeat': isSelected(seat.num)
-                }"
+
                 (click)=onSelectSeat(seat.num)>
-            <p
-                    class='noselect'>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span
+                [ngClass]="{
+                    'bajo_jajo': !seat.free,
+                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': isSelected(seat.num)
+                }"     >
                 {{seat.num}}
-            </p>
+            </span>
         </div>
     </section>
     <section>
         <button class="confirm_btn" mat-button
                 [disabled]="!currSeat"
+                [ngClass]="{
+                    'btn_locked': !currSeat,
+                    'confirm_btn': currSeat
+                }"
                 (click)="onBuyTicket()"
                 >
             Buy Ticket

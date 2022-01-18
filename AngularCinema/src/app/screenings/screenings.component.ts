@@ -20,7 +20,7 @@ export class ScreeningsComponent implements OnInit {
 
   ngOnInit(): void {
     this._screeningService.getScreenings().subscribe(
-      response => { console.log("Fetched screenings off API.", response); this.screenings = response ?? []},
+      response => this.screenings = response,
       error => console.error(error)
     )
   }

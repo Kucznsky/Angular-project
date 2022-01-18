@@ -4,16 +4,17 @@ import { IFilm } from 'src/models/IFilm';
 import { FilmService } from 'src/services/film.service';
 import { IRoom } from 'src/models/IRoom';
 import { RoomService } from 'src/services/room.service';
+import { IScreening } from 'src/models/IScreening';
 import { ScreeningService } from 'src/services/screening.service';
 
 @Component({
-  selector: 'app-add-screening',
-  templateUrl: './add-screening.component.html',
-  styleUrls: ['./add-screening.component.scss']
+  selector: 'app-edit-screening',
+  templateUrl: './edit-screening.component.html',
+  styleUrls: ['./edit-screening.component.scss']
 })
-export class AddScreeningComponent implements OnInit {
+export class EditScreeningComponent implements OnInit {
 
-  film: IFilm | undefined
+  screening: IScreening | undefined
   filmOptions: IFilm[] = []
   roomOptions: IRoom[] = []
 
@@ -23,18 +24,16 @@ export class AddScreeningComponent implements OnInit {
       private _filmService: FilmService,
       private _roomService: RoomService,
       private _screeningService: ScreeningService,
-      // private _formBuilder: FormBuilder,
     ) {
     // this.film = { id: 1, title: "TITle", screeningTime: 120, isShowing: true }
-    this.film = history.state.data?.film
+    this.screening = history.state.data?.film
+    let date = this.screening!.beginsAt
+    let time = this.screening!.beginsAt
     this.formGroup = new FormGroup({
-      film: new FormControl(this.film?.id, Validators.required),
-      room: new FormControl(null, Validators.required),
-      beginsAt_date: new FormControl(null, Validators.required),
-      beginsAt_time: new FormControl(null, Validators.required),
-      // beginsAt: new FormGroup({
-      //   // date: this._formBuilder.control(''),
-      // })
+      film: new FormControl(this.screening!.film.id, Validators.required),
+      room: new FormControl(this.screening!.room, Validators.required),
+      beginsAt_date: new FormControl(date, Validators.required),
+      beginsAt_time: new FormControl(time, Validators.required),
     })
   }
 

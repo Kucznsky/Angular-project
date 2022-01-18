@@ -7,6 +7,15 @@
                 <p>Lenght: {{movie.screeningTime}} minutes</p>
                 <br/>
                 <img style="margin-top: 2rem; width: 20rem" src="https://i.redd.it/85ij3dpgdos71.png"/>
+                <a [routerLink]="[ '/screenings/new' ]" [state]="{data: {film: movie}}" class='link2'>
+                    Add screening <i class="fas fa-video"></i><i class="fas fa-plus smol"></i>
+                </a>
+                <a [routerLink]="[ '/movies/edit' ]" [state]="{data: {movie: movie}}" class='link2'>
+                    Edit
+                </a>
+                <button (click)="deleteMovie()">
+                    Delete
+                </button>
         </fieldset>
     </div>
 </div>

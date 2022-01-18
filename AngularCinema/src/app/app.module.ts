@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
+import { MatInputModule } from '@angular/material/input'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,10 +13,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MoviesComponent } from './movies/movies.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ScreeningsComponent } from './screenings/screenings.component';
-import { AddMoviesComponent } from './add-movies/add-movies.component';
 import { BuyTicketComponent } from './buy-ticket/buy-ticket.component';
-import { EditMoviesComponent } from './edit-movies/edit-movies.component';
-import { EditShowingsComponent } from './edit-showings/edit-showings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviePageComponent } from './movies/movie-page/movie-page.component';
 import { MovieComponent } from './movies/movie/movie.component';
@@ -24,6 +22,9 @@ import { MatListModule } from '@angular/material/list';
 import { ScreeningElementComponent } from './screenings/screening-element/screening-element.component';
 import { AddScreeningComponent } from './screenings/add-screening/add-screening.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddMovieComponent } from './movies/add-movie/add-movie.component';
+import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
+import { EditScreeningComponent } from './screenings/edit-screening/edit-screening.component';
 
 @NgModule({
   declarations: [
@@ -33,15 +34,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MoviesComponent,
     RoomsComponent,
     ScreeningsComponent,
-    AddMoviesComponent,
     BuyTicketComponent,
-    EditMoviesComponent,
-    EditShowingsComponent,
     MoviePageComponent,
     MovieComponent,
     ScreeningPageComponent,
     ScreeningElementComponent,
-    AddScreeningComponent
+    AddScreeningComponent,
+    AddMovieComponent,
+    EditMovieComponent,
+    EditScreeningComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

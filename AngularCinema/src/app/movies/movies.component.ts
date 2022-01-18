@@ -15,10 +15,9 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this._filmService.getFilms().subscribe(
-      response => {console.log("Fetched films from API", response); this.films = response ?? []},
+      response => this.films = response ?? [],
       error => console.error(error)
     )
     // this.films = this._filmService.Films
   }
-
 }

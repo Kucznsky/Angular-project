@@ -3,33 +3,19 @@
         <legend>Add new screening</legend>
         <form [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
             <mat-form-field appearance="fill">
-                <mat-label>Film</mat-label>
-                <mat-select formControlName='film'>
-                    <mat-option *ngFor="let film of filmOptions" [value]="film.id">
-                        {{film.title}}
-                    </mat-option>
-                </mat-select>
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
             </mat-form-field>
             <br/>
             <mat-form-field appearance="fill">
-                <mat-label>Room</mat-label>
-                <mat-select formControlName='room'>
-                    <mat-option *ngFor="let room of roomOptions" [value]="room">
-                        <pre>{{room.id}}   Capacity: {{room.capacity}}</pre>
-                    </mat-option>
-                </mat-select>
+                <mat-label>Screening Time (in minutes)</mat-label>
+                <input matInput formControlName="screeningTime" type="number" min="0">
             </mat-form-field>
+            
+            <!-- <span class="center">
+                <input formControlName="beginsAt_time" type="text" placeholder=""/>
+            </span> -->
             <br />
-            <span class="center">
-                <input formControlName="beginsAt_date" id="date" type="date" />
-            </span>
-            <br />
-            <span class="center">
-                <input formControlName="beginsAt_time" type="time" />
-            </span>
-            <br />
-            <!-- <mat-form-field>
-            </mat-form-field> -->
             <br />
             <span class="center" *ngIf="isInvalid">
                 Fill the form!

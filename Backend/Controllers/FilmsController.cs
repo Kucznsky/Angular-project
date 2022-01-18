@@ -33,7 +33,7 @@ namespace Backend.Controllers
         }
         // Pseudo GraphQL
         [HttpPost("List")]
-        public ActionResult<IEnumerable<Film>> GetList([FromBody]IEnumerable<int> filmsToFetch)
+        public ActionResult<IEnumerable<Film>> GetList([FromBody] IEnumerable<int> filmsToFetch)
         {
             filmsToFetch ??= new List<int>();
             // Remove duplicates.
@@ -47,23 +47,23 @@ namespace Backend.Controllers
             return Ok(result);
         }
         [HttpPost]
-        public ActionResult AddRange([FromBody] IEnumerable<Film> films)
+        public ActionResult<IEnumerable<Film>> AddRange([FromBody] IEnumerable<Film> films)
         {
             if (films is null || films.Any() is false)
                 return BadRequest(new ArgumentNullException("There was no films provided to add to database."));
 
-            
+
             // Filter invalid screenings.
             // var screenings_filtered = films.Where(item =>
             //                 _context.Rooms.Find(item.RoomID) is not null
             //                 && _context.Films.Find(item.FilmID) is not null);
 
-            
+
             _context.AddRange(films);
             _context.SaveChanges();
 
             // return Ok($"Added {screenings_filtered.Count()} out of {screenings.Count()} screenings.");
-            return Ok();
+            return Ok(films);
         }
         [HttpPost("DEBUG")]
         public void PostDebug()
@@ -74,7 +74,7 @@ namespace Backend.Controllers
 
 
         [HttpPut]
-        public ActionResult Update([FromBody] Film film)
+        public ActionResult<Film> Update([FromBody] Film film)
         {
             if (film is null)
                 return BadRequest(new ArgumentNullException("There is no film provided to update."));
@@ -89,7 +89,7 @@ namespace Backend.Controllers
             filmToUpdate.Title = film.Title;
             _context.SaveChanges();
 
-            return Ok();
+            return Ok(filmToUpdate);
         }
 
         [HttpDelete]

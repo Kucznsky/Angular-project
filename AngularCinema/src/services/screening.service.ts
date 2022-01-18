@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { tap, Observable, BehaviorSubject } from 'rxjs';
 import { IScreening } from 'src/models/IScreening';
 
 const ApiURL: string = "https://localhost:5001/"
@@ -16,41 +16,59 @@ const Credentials = {
 })
 export class ScreeningService {
 
+  private screenings_Subject: BehaviorSubject<IScreening[]> = new BehaviorSubject<IScreening[]>([])
+  private wasDataFetched: boolean = false
+
   constructor(private _http: HttpClient) { }
 
+  private fetchScreenings(): void {
+    this._http.get<IScreening[]>(`${ApiURL}Screenings`, Credentials).subscribe(
+      response => { console.log("Fetched screenings off of API:", response); this.screenings_Subject.next(response) },
+      error => console.error(error)
+    )
+  }
+
   public getScreenings(): Observable<IScreening[]> {
-    // console.warn("DEBUG: Using mock-ups")
-    // return new Observable( function subscribe(subscriber){ subscriber.next([
-    //         {id: 1, filmID: 1, film: { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true }, roomID: 1, room: { id: 1, capacity: 60 }, soldTickets: 0, beginsAt: new Date(2022, 2, 1) },
-    //         {id: 2, filmID: 2, film: { id: 2, title: "The Room", screeningTime: 120, isShowing: true }, roomID: 1, room: { id: 1, capacity: 60 }, soldTickets: 0, beginsAt: new Date(2022, 3, 1) }
-    //       ]) })
-    return this._http.get<IScreening[]>(`${ApiURL}Screenings`)
+    if (!this.wasDataFetched) {
+      this.fetchScreenings()
+      this.wasDataFetched = true
+    }
+    return this.screenings_Subject;
   }
   public getScreening(id: number): Observable<IScreening> {
-    // console.warn("DEBUG: Using mock-ups")
-    // return new Observable( function subscribe(subscriber){ subscriber.next(
-    //   {id: id, filmID: 1, roomID: 1, soldTickets: 0, beginsAt: new Date(2022, 3, 1) }
-    // ) })
-    return this._http.get<IScreening>(
-        `${ApiURL}Screening/${id}`,
-        Credentials)
+    // If film is loaded locally, serve it.
+    let result: IScreening | undefined
+    if(this.wasDataFetched && (result = this.screenings_Subject.value.find(item => item.id == id)) != undefined)
+      return new Observable(subscriber => subscriber.next(result))
+
+    // Otherwise try to get it off of API.
+    
+    return this._http.get<IScreening>(`${ApiURL}Screening/${id}`, Credentials)
+        .pipe(tap(fetch => console.log("Fetched screening off of API: ", fetch)))
   }
   public getFilmScreenings(filmID: number): Observable<IScreening[]> {
     return this._http.get<IScreening[]>(
       `${ApiURL}FilmScreenings/${filmID}`,
       Credentials)
   }
-  public postScreenings(screenings: IScreening[]): Observable<object> {
-    return this._http.post(
-      `${ApiURL}Screenings`,
-      screenings,
-      Credentials)
+  public postScreenings(screenings: IScreening[]): void {
+    this._http.post(`${ApiURL}Screenings`, screenings, Credentials).subscribe(
+      success => { this.screenings_Subject.next([...this.screenings_Subject.value, ...<IScreening[]>success]); console.log("Successfully posted new screening!", success) },
+      error => console.error(error)
+    )
   }
-  public putScreening(screenings: IScreening): Observable<object> {
-    return this._http.put(
-      `${ApiURL}Screenings`,
-      screenings,
-      Credentials)
+
+  public updateScreening(screening: IScreening): void {
+    this.screenings_Subject.value[this.screenings_Subject.value.findIndex(item => item.id == screening.id)]=screening
+    this.screenings_Subject.next(this.screenings_Subject.value);
+  }
+  public putScreening(screening: IScreening): void {
+    this._http.put(`${ApiURL}Films`, screening, Credentials).subscribe(
+      success => { 
+          this.updateScreening(<IScreening>success);
+          console.log("Successfully put updated screening!", success) },
+      error => console.error(error)
+    )
   }
 
   public getScreenings_InDay(day: Date): Observable<IScreening[]> {

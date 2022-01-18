@@ -41,10 +41,23 @@
   background-color: #b52e31;
 }
 
-/*.enabled {
-  background-color: #B52E31;
+.link_hover {
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 0.9rem;
+  color: #fff;
+  text-shadow: 0 1px 0 #222;
+  background-color: #b52e31;
+  padding: 0.7rem;
+  border-radius: 4px;
 }
 
-.disabled {
-  background-color: rgba(255, 255, 255, 0.2);
-}*/
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}

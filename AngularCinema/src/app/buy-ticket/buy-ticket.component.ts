@@ -32,7 +32,6 @@ export class BuyTicketComponent implements OnInit {
   }
 
   fetchFreeSeats(): void {
-    console.warn("HERE")
     this._reservationService.getAllTakenSeats(this.screening!.id).subscribe(
       response => this.takeSeats(response),
       error => console.error(error)
@@ -52,10 +51,11 @@ export class BuyTicketComponent implements OnInit {
   }
 
   onBuyTicket(): void {
-    this._reservationService.postReservation(this.screening.id, this.currSeat!).subscribe(
-      response => console.log(response),
-      error => console.error(error)
-    )
+    this._reservationService.postReservation(this.screening.id, this.currSeat!)
+    // .subscribe(
+    //   response => console.log(response),
+    //   error => console.error(error)
+    // )
     this.screening.soldTickets += 1
     history.back()
   }

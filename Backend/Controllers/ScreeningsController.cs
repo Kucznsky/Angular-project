@@ -41,7 +41,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddRange([FromBody] IEnumerable<Screening> screenings)
+        public ActionResult<IEnumerable<Screening>> AddRange([FromBody] IEnumerable<Screening> screenings)
         {
             if (screenings is null || screenings.Any() is false)
                 return BadRequest(new ArgumentNullException("There was no screenings provided to add to database."));
@@ -51,14 +51,19 @@ namespace Backend.Controllers
                             _context.Rooms.Find(item.RoomID) is not null
                             && _context.Films.Find(item.FilmID) is not null);
 
+            foreach (var screening in screenings_filtered)
+            {
+                screening.Film = null;
+                screening.Room = null;
+            }
             _context.AddRange(screenings_filtered);
             _context.SaveChanges();
 
-            return Ok($"Added {screenings_filtered.Count()} out of {screenings.Count()} screenings.");
+            return Ok(screenings_filtered);
         }
 
         [HttpPut]
-        public ActionResult Update([FromBody] Screening screening)
+        public ActionResult<IEnumerable<Screening>> Update([FromBody] Screening screening)
         {
             if (screening is null)
                 return BadRequest(new ArgumentNullException("There is no screening provided to update."));
@@ -75,7 +80,7 @@ namespace Backend.Controllers
             screeningToUpdate.RoomID = screening.RoomID;
             _context.SaveChanges();
 
-            return Ok();
+            return Ok(screeningToUpdate);
         }
 
         /// wyświetlanie seansów w danym dniu, wyświetlanie aktualnie trwających seansów (zaczynamy od bieżącego dnia i bieżącej godziny) - 2pkt

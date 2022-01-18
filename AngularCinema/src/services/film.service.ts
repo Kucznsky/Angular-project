@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { tap, Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IFilm } from 'src/models/IFilm';
 
 const ApiURL: string = "https://localhost:5001/"
@@ -16,46 +16,70 @@ const Credentials = {
 })
 export class FilmService {
 
+  // private films: IFilm[] = []
+  private films_Subject: BehaviorSubject<IFilm[]> = new BehaviorSubject<IFilm[]>([])
+  private wasDataFetched: boolean = false
+  // public get Films(): IFilm[] { return this.films }
+
   constructor(private _http: HttpClient) { }
 
-  private films: IFilm[] = []
-  public get Films(): IFilm[] { if(this.films.length <= 0) this.fetchFilms(); return this.films }
-  
   public getFilms(): Observable<IFilm[]> {
-    // console.warn("DEBUG: Using mock-ups")
-    // return new Observable( function subscribe(subscriber){ subscriber.next([
-    //         { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true },
-    //         { id: 2, title: "The Room", screeningTime: 120, isShowing: true },
-    //       ]) })
-    return this._http.get<IFilm[]>(`${ApiURL}Films`, Credentials)
+    if (!this.wasDataFetched) {
+      this.fetchFilms()
+      this.wasDataFetched = true
+    }
+    return this.films_Subject;
   }
-  public fetchFilms(): void {
+  private fetchFilms(): void {
     this._http.get<IFilm[]>(`${ApiURL}Films`, Credentials).subscribe(
-      response => this.films = response,
+      response => { console.log("Fetched films off of API:", response); this.films_Subject.next(response) },
       error => console.error(error)
     )
   }
   public getFilm(id: number): Observable<IFilm> {
-    // console.warn("DEBUG: Using mock-ups")
-    // return new Observable( function subscribe(subscriber){ subscriber.next(
-    //         { id: 1, title: "Motywacja", screeningTime: 600, isShowing: true }
-    //       )})
+    // If film is loaded locally, serve it.
+    let result: IFilm | undefined
+    if(this.wasDataFetched && (result = this.films_Subject.value.find(item => item.id == id)) != undefined)
+      return new Observable(subscriber => subscriber.next(result))
+
+    // Otherwise try to get it off of API.
     return this._http.get<IFilm>(`${ApiURL}Film/${id}`, Credentials)
+        .pipe(tap(fetch => console.log("Fetched movie off of API: ", fetch)))
   }
   public getList(ids: number[]): Observable<IFilm> {
     return this._http.get<IFilm>(`${ApiURL}Film/List`, Object.assign(Credentials, { body: ids }))
   }
-  public postFilms(films: IFilm[]): Observable<object> {
-    return this._http.post(`${ApiURL}Film/List`, films, Credentials)
+  public postFilms(films: IFilm[]): void {
+    this._http.post(`${ApiURL}Films`, films, Credentials).subscribe(
+      success => { this.films_Subject.next([...this.films_Subject.value, ...<IFilm[]>success]); console.log("Successfully posted new film!", success) },
+      error => console.error(error)
+    )
   }
-  public putFilms(film: IFilm): Observable<object> {
-    return this._http.put(`${ApiURL}Films`, film, Credentials)
+  private updateFilm(film: IFilm) {
+    this.films_Subject.value[this.films_Subject.value.findIndex(item => item.id == film.id)]=film
+    this.films_Subject.next(this.films_Subject.value);
   }
-  public deleteFilm(id: number): Observable<object> {
-    return this._http.delete(`${ApiURL}Films?index=${id}`, Credentials)
+  public putFilm(film: IFilm): void {
+    this._http.put(`${ApiURL}Films`, film, Credentials).subscribe(
+      success => {
+          this.updateFilm(<IFilm>success);
+          console.log("Successfully put updated film!", success) },
+      error => console.error(error)
+    )
+  }
+  public deleteFilm(id: number): void {
+    this._http.delete(`${ApiURL}Films?index=${id}`, Credentials).subscribe(
+      success => {
+          console.log("Successfully deleted film!", success);
+          this.films_Subject.value.splice(this.films_Subject.value.findIndex(item => item.id == id), 1);
+          this.films_Subject.next(this.films_Subject.value) },
+      error => console.error(error)
+    )
   }
 
   public getFilm_Popularity(day: Date): Observable<number> {
     return this._http.get<number>(`${ApiURL}Films/FilmPopularity?day=${day}`, Credentials)
   }
 }
+
+

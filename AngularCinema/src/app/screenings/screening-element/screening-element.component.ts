@@ -16,5 +16,4 @@ export class ScreeningElementComponent implements OnInit {
   getAvailableTickets(screening: IScreening) {
     return screening.room.capacity - screening.soldTickets
   }
-  
 }
