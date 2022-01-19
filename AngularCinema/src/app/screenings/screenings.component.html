@@ -1,14 +1,32 @@
-<div>
-    <span class="center">
-        <a [routerLink]="[ '/screenings/new' ]" class='link2'>
-            New Screening <i class="fas fa-video"></i><i class="fas fa-plus smol"></i>
-        </a>
-    </span>
-    <div class="center">
-        <article class='list'>
-            <section *ngFor="let screening of screenings" class='list_element'>
+<article>
+    <section class="center">
+        <span >
+            <a [routerLink]="[ '/screenings' ]" class='link'>
+                Today screenings <i class="far fa-calendar-alt"></i>
+            </a>
+        </span>
+        <span>
+            <a [routerLink]="[ '/screenings' ]" class='link'>
+                Current screenings <i class="far fa-clock"></i>
+            </a>
+        </span>
+        <span>
+            <a [routerLink]="[ '/screenings/' ]" class='link'>
+                All screenings <i class="fas fa-video"></i>
+            </a>
+        </span>
+        <hr/>
+        <span>
+            <a [routerLink]="[ '/screenings/new' ]" class='link2'>
+                Add Screening <i class="fas fa-video"></i><i class="fas fa-plus smol"></i>
+            </a>
+        </span>
+    </section>
+    <section class="center">
+        <div class='list'>
+            <span *ngFor="let screening of screenings" class='list_element'>
                 <app-screening-element [screening]=screening></app-screening-element>
-            </section>
-        </article>
-    </div>
-</div>
+            </span>
+        </div>
+    </section>
+</article>
