@@ -31,7 +31,10 @@ namespace Backend.Controllers
         [HttpGet("/Screening/{index}")]
         public Screening Get(int index)
         {
-            return _context.Screenings.Find(index);
+            return _context.Screenings.Where(item => item.ID == index)
+                    .Include(item => item.Film)
+                    .Include(item => item.Room)
+                    .First();
         }
         [HttpGet("/FilmScreenings/{filmID}")]
         public IEnumerable<Screening> GetFilmScreenings(int filmID)
@@ -71,16 +74,16 @@ namespace Backend.Controllers
             var screeningToUpdate = _context.Screenings.Find(screening.ID);
             if (screeningToUpdate is null)
                 return NotFound(new NullReferenceException($"There is no screening with provided id: {screening.ID}"));
-            if (_context.Films.Find(screening.FilmID) is null)
+            if (_context.Films.Any(item => item.ID == screening.FilmID) is false)
                 return NotFound(new NullReferenceException($"There is no film with provided id: {screening.FilmID}"));
-            if (_context.Rooms.Find(screening.RoomID) is null)
+            if (_context.Rooms.Any(item => item.ID == screening.RoomID) is false)
                 return NotFound(new NullReferenceException($"There is no room with provided id: {screening.RoomID}"));
 
             screeningToUpdate.FilmID = screening.FilmID;
             screeningToUpdate.RoomID = screening.RoomID;
             _context.SaveChanges();
 
-            return Ok(screeningToUpdate);
+            return Ok(Get(screeningToUpdate.ID));
         }
 
         /// wyświetlanie seansów w danym dniu, wyświetlanie aktualnie trwających seansów (zaczynamy od bieżącego dnia i bieżącej godziny) - 2pkt

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
+import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material/select'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { EditScreeningComponent } from './screenings/edit-screening/edit-screening.component';
+import { PopularityComponent } from './home-page/popularity/popularity.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { EditScreeningComponent } from './screenings/edit-screening/edit-screeni
     AddScreeningComponent,
     AddMovieComponent,
     EditMovieComponent,
-    EditScreeningComponent
+    EditScreeningComponent,
+    PopularityComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ import { EditScreeningComponent } from './screenings/edit-screening/edit-screeni
     MatDatepickerModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

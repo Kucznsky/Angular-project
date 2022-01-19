@@ -11,6 +11,7 @@ body {
   color: #ddd;
   background-color: #222;
   margin: auto;
+  margin-bottom: 2rem;
 }
 
 h1 {
@@ -229,4 +230,8 @@ fieldset legend {
   border-top: solid 3px rgb(45, 71, 128);
   border-bottom-width: 0;
   bottom: -3px;
+}
+
+.error {
+  color: red;
 }

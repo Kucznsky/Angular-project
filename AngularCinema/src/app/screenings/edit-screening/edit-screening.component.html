@@ -1,7 +1,11 @@
 <div class='center'>
     <fieldset>
-        <legend>Add new screening</legend>
-        <form [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
+        <legend>Edit screening</legend>
+        <form *ngIf="screening" [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
+            <span *ngIf="!screening.film.isShowing" style='color:red'>
+                {{screening.film.title}} is not currently showing!
+                <br />
+            </span>
             <mat-form-field appearance="fill">
                 <mat-label>Film</mat-label>
                 <mat-select formControlName='film'>
@@ -9,29 +13,41 @@
                         {{film.title}}
                     </mat-option>
                 </mat-select>
+                <span *ngIf="formGroup.get('film')?.invalid" class="error">
+                    [Required]
+                </span>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="fill">
                 <mat-label>Room</mat-label>
                 <mat-select formControlName='room'>
-                    <mat-option *ngFor="let room of roomOptions" [value]="room">
+                    <mat-option *ngFor="let room of roomOptions" [value]="room.id">
                         <pre>{{room.id}}   Capacity: {{room.capacity}}</pre>
                     </mat-option>
                 </mat-select>
+                <span *ngIf="formGroup.get('room')?.invalid" class="error">
+                    [Required]
+                </span>
             </mat-form-field>
             <br />
             <span class="center">
                 <input formControlName="beginsAt_date" id="date" type="date" />
             </span>
+            <span *ngIf="formGroup.get('beginsAt_date')?.invalid" class="error">
+                [Required]
+            </span>
             <br />
             <span class="center">
                 <input formControlName="beginsAt_time" type="time" />
+            </span>
+            <span *ngIf="formGroup.get('beginsAt_time')?.invalid" class="error">
+                [Required]
             </span>
             <br />
             <!-- <mat-form-field>
             </mat-form-field> -->
             <br />
-            <span class="center" *ngIf="isInvalid">
+            <span class="center" *ngIf="isInvalid" class="error">
                 Fill the form!
             </span>
             <span class="center">

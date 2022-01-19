@@ -10,6 +10,11 @@
     <a *ngIf="getAvailableTickets(screening)" [routerLink]="['/buyTicket', screening.id]"
         [state]="{data: {screening: screening}}" class="link3" style="display: flex; justify-content: center;">
         <br />
-        BUY TICKET <i class="fas fa-shopping-cart"></i>
+        BUY TICKET <i class="fas fa-shopping-cart please_move"></i>
+    </a>
+    <a [routerLink]="['/screenings', screening.id, 'edit']"
+        [state]="{data: {screening: screening}}" class="link3" style="display: flex; justify-content: center;">
+        <br />
+        Edit<i class="fas fa-edit please_move" ></i>
     </a>
 </div>

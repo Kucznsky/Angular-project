@@ -16,11 +16,10 @@ const routes: Routes = [
   { path: 'rooms', component: RoomsComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'movies/new', component: AddMovieComponent },
-  { path: 'movies/edit', component: EditMovieComponent },
+  { path: 'movie/:id/edit', component: EditMovieComponent },
   { path: 'screenings', component: ScreeningsComponent },
   { path: 'screenings/new', component: AddScreeningComponent },
-  { path: 'screenings/edit', component: EditScreeningComponent },
-
+  { path: 'screenings/:id/edit', component: EditScreeningComponent },
   { path: 'movie/:id', component: MoviePageComponent },
   { path: 'buyTicket/:screeningID', component: BuyTicketComponent },
 

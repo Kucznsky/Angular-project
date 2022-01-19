@@ -1,21 +1,30 @@
 <div *ngIf="movie; else Loading">
     <div class="center">
         <fieldset>
-                <legend>
-                    {{movie.title}}
-                </legend>
-                <p>Lenght: {{movie.screeningTime}} minutes</p>
-                <br/>
-                <img style="margin-top: 2rem; width: 20rem" src="https://i.redd.it/85ij3dpgdos71.png"/>
-                <a [routerLink]="[ '/screenings/new' ]" [state]="{data: {film: movie}}" class='link2'>
-                    Add screening <i class="fas fa-video"></i><i class="fas fa-plus smol"></i>
-                </a>
-                <a [routerLink]="[ '/movies/edit' ]" [state]="{data: {movie: movie}}" class='link2'>
-                    Edit
-                </a>
-                <button (click)="deleteMovie()">
-                    Delete
-                </button>
+            <legend>
+                {{movie.title}}
+            </legend>
+                <article class="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+                    <h1>Lenght: {{movie.screeningTime}} minutes</h1>
+                    <img style="margin-top: 2rem; width: 20rem" src="https://i.redd.it/85ij3dpgdos71.png" />
+                    <section>
+                        <a [routerLink]="[ '/screenings/new' ]" [state]="{data: {film: movie}}" class='link2'>
+                            Add screening <i class="fas fa-video"></i><i class="fas fa-plus smol"></i>
+                        </a>
+                    </section>
+                    <section>
+                        <a [routerLink]="[ '/movie', movie.id, 'edit' ]" [state]="{data: {movie: movie}}" class='link2'>
+                            Edit <i class="fas fa-edit"></i>
+                        </a>
+                    </section>
+                    <section class="center">
+                        <button 
+                                class="delete"
+                                (click)="deleteMovie()">
+                            Delete <i class="far fa-trash-alt"></i>
+                        </button>
+                    </section>
+                </article>
         </fieldset>
     </div>
 </div>

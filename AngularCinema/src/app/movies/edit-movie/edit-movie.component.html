@@ -1,15 +1,21 @@
 <div class='center'>
     <fieldset>
-        <legend>Add new screening</legend>
-        <form [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
+        <legend>Edit movie</legend>
+        <form *ngIf="movie" [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
             <mat-form-field appearance="fill">
                 <mat-label>Title</mat-label>
                 <input matInput formControlName="title">
+                <span *ngIf="formGroup.get('title')?.invalid" class="error">
+                    [Required]
+                </span>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="fill">
                 <mat-label>Screening Time (in minutes)</mat-label>
-                <input matInput formControlName="screeningTime" type="number" min="0">
+                <input matInput formControlName="screeningTime" type="number" min="0" max="600">
+                <span *ngIf="formGroup.get('screeningTime')?.invalid" class="error">
+                    [Required]
+                </span>
             </mat-form-field>
             
             <!-- <span class="center">

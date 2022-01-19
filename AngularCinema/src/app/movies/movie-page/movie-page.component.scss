@@ -1,4 +1,110 @@
 img {
-  width: 10rem;
+  width: 1rem;
+  height: 10rem;
+}
+
+fieldset {
+  align-items: center;
+}
+fieldset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2);
+  border: solid;
+  border-radius: 8px;
   margin: 1rem;
+  //gap: 2rem;
+  align-items: baseline;
+}
+
+fieldset legend {
+  width: inherit;
+  padding: 0 10px;
+  border-bottom: none;
+  text-align: left;
+  font-weight: bold;
+}
+
+.link2 {
+  margin-bottom: 1rem;
+}
+
+.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA {
+}
+
+.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  section {
+  margin-top: 1.8rem;
+}
+
+.delete {
+  position: relative;
+  background-color: #444;
+  border: none;
+  color: #222;
+  margin-top: 1rem;
+  padding: 15px 24px;
+  box-shadow: -5px 5px 0 #333;
+  outline: none;
+}
+
+.delete::after {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 0;
+  width: 0;
+  border: solid 5px transparent;
+  border-top: solid 5px #333;
+  border-bottom-width: 0;
+  right: 0px;
+  bottom: -5px;
+}
+
+.delete::before {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 0;
+  width: 0;
+
+  border: solid 5px transparent;
+  border-right: solid 5px #333;
+  border-left-width: 0;
+  top: 0;
+  left: -5px;
+}
+
+.delete:hover {
+  background-color: #555;
+  color: white;
+}
+
+.delete:active {
+  background: #e60023;
+  top: 3px;
+  left: -3px;
+  box-shadow: -3px 3px 0 #b8001c;
+  outline: white;
+}
+
+.delete:active::before {
+  border: solid 3px transparent;
+  border-right: solid 3px #b8001c;
+  border-left-width: 0;
+  left: -3px;
+}
+
+.delete:active::after {
+  border: solid 3px transparent;
+  border-top: solid 3px #b8001c;
+  border-bottom-width: 0;
+  bottom: -3px;
+}
+
+.smol {
+  font-size: 0.5rem;
+  margin-left: 0.1rem;
 }

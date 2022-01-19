@@ -63,7 +63,7 @@ export class ScreeningService {
     this.screenings_Subject.next(this.screenings_Subject.value);
   }
   public putScreening(screening: IScreening): void {
-    this._http.put(`${ApiURL}Films`, screening, Credentials).subscribe(
+    this._http.put(`${ApiURL}Screenings`, screening, Credentials).subscribe(
       success => { 
           this.updateScreening(<IScreening>success);
           console.log("Successfully put updated screening!", success) },
