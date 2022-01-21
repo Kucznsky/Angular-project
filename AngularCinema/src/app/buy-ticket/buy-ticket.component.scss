@@ -90,15 +90,20 @@ section {
   top: 0;
 }
 
-.bajo_jajo:span {
+.bajo_jajo span {
   background-color: #e60023;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .bajo_jajo:hover span {
   background-color: #e60023;
   color: #fff;
+  text-shadow: 0 0 10px #ac001a;
 }
+
+/*.bajo_jajo:active span:nth-child(4) {
+  animation: 0.5s linear 1s infinite alternate slidein;
+}*/
 
 .bajo_jajo:hover span:nth-child(4) {
   transform: translate(0, 0);
@@ -120,7 +125,7 @@ section {
   opacity: 1;
 }
 
-.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2:nth-child(4) {
+.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA span {
   background-color: #238636;
   color: #fff;
 }

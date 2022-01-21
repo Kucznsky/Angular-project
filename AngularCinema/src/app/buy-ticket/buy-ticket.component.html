@@ -16,11 +16,7 @@
             <span></span>
             <span></span>
             <span
-                class="noselect"
-                [ngClass]="{
-                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2': isSelected(seat.num),
-                    'bajo_jajo': !seat.free
-                }">
+                class="noselect">
                 {{seat.num}}
             </span>
         </div>
@@ -38,5 +34,3 @@
         </button>
     </section>
 </article>
-
-<!-- [ngStyle]={ 'background-color': seat.free ? 'inherit' : (isSelected(seat.num) ? 'green' : 'red') } !seat.free,> -->
