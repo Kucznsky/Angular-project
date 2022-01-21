@@ -1,0 +1,37 @@
+.btn_locked {
+  position: relative;
+  background-color: #444;
+  border: none;
+  color: #222;
+  margin-top: 1rem;
+  padding: 15px 24px;
+  box-shadow: -5px 5px 0 #333;
+  outline: none;
+}
+
+.btn_locked::after {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 0;
+  width: 0;
+  border: solid 5px transparent;
+  border-top: solid 5px #333;
+  border-bottom-width: 0;
+  right: 0px;
+  bottom: -5px;
+}
+
+.btn_locked::before {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 0;
+  width: 0;
+
+  border: solid 5px transparent;
+  border-right: solid 5px #333;
+  border-left-width: 0;
+  top: 0;
+  left: -5px;
+}

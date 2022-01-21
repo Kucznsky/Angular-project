@@ -1,1 +1,20 @@
-<p>popularity works!</p>
+<div>
+
+    <fieldset>
+        <legend>Add new screening</legend>
+        <form [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
+            <span class="center">
+                <input formControlName="day" id="date" type="date" />
+            </span>
+            <span *ngIf="formGroup.get('day')?.invalid" class="error">
+                [Required]
+            </span>
+            <button mat-button type="submit" [disabled]='isInvalid'>
+                View Popularity
+            </button>
+        </form>
+    </fieldset>
+    <div *ngFor="let day of popularity">
+        {{day[0]}}: {{day[1]}}
+    </div>
+</div>

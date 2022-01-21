@@ -77,8 +77,9 @@ export class FilmService {
     )
   }
 
-  public getFilm_Popularity(day: Date): Observable<number> {
-    return this._http.get<number>(`${ApiURL}Films/FilmPopularity?day=${day}`, Credentials)
+  public getFilm_Popularity(days: Date[]): Observable<[Date, number][]> {
+    // return this._http.get<number>(`${ApiURL}Films/FilmPopularity?day=${day}`, Credentials)
+    return this._http.get<[Date, number][]>(`${ApiURL}Films/FilmPopularity/list`, Object.assign(Credentials, { body: days }))
   }
 }
 

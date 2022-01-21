@@ -1,22 +1,22 @@
 <article>
     <section class="center">
         <span >
-            <a [routerLink]="[ '/screenings' ]" class='link'>
+            <button class='link' (click)="todayScreenings()">
                 Today screenings <i class="far fa-calendar-alt"></i>
-            </a>
+            </button>
         </span>
         <span>
-            <a [routerLink]="[ '/screenings' ]" class='link'>
+            <button class='link' (click)="currentScreenings()">
                 Current screenings <i class="far fa-clock"></i>
-            </a>
+            </button>
         </span>
         <span>
-            <a [routerLink]="[ '/screenings/' ]" class='link'>
+            <button class='link' (click)="allScreenings()">
                 All screenings <i class="fas fa-video"></i>
-            </a>
+            </button>
         </span>
         <hr/>
-        <span>
+        <span class="link_cant_into_navbar">
             <a [routerLink]="[ '/screenings/new' ]" class='link2'>
                 Add Screening <i class="fas fa-video"></i><i class="fas fa-plus smol"></i>
             </a>

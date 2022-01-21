@@ -8,7 +8,7 @@ const Credentials = {
     mode: 'cors',
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'*',
-      // 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
+      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
   })}
 
 @Injectable({
@@ -73,7 +73,7 @@ export class ScreeningService {
 
   public getScreenings_InDay(day: Date): Observable<IScreening[]> {
     return this._http.get<IScreening[]>(
-      `${ApiURL}Screenings/ScreeningsInDay?day=${day}`,
+      `${ApiURL}Screenings/ScreeningsInDay?day=${day.toLocaleDateString()}`,
       Credentials)
   }
   public getScreenings_Now(): Observable<IScreening[]> {

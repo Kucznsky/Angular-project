@@ -5,9 +5,12 @@
         </h1>
     </section>
     <section class='list'>
-        <div 
+        <div class="internal_pain"
                 *ngFor="let seat of seats"
-
+                    [ngClass]="{
+                    'bajo_jajo': !seat.free,
+                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': isSelected(seat.num)
+                }"
                 (click)=onSelectSeat(seat.num)>
             <span></span>
             <span></span>
@@ -15,9 +18,9 @@
             <span
                 class="noselect"
                 [ngClass]="{
-                    'bajo_jajo': !seat.free,
-                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': isSelected(seat.num)
-                }"     >
+                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2': isSelected(seat.num),
+                    'bajo_jajo': !seat.free
+                }">
                 {{seat.num}}
             </span>
         </div>
@@ -36,4 +39,4 @@
     </section>
 </article>
 
-<!-- [ngStyle]={ 'background-color': seat.free ? 'inherit' : (isSelected(seat.num) ? 'green' : 'red') }> -->
+<!-- [ngStyle]={ 'background-color': seat.free ? 'inherit' : (isSelected(seat.num) ? 'green' : 'red') } !seat.free,> -->

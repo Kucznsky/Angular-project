@@ -95,12 +95,17 @@ namespace Backend.Controllers
             if (day.HasValue is false)
                 return BadRequest(new ArgumentNullException("You have to provide viable day as argument."));
 
-            return Ok(_context.Screenings.Where(item => item.BeginsAt.Day == day.Value.Day));
+            return Ok(_context.Screenings
+                    .Where(item => item.BeginsAt.Date == day.Value.Date)
+                    .Include(item => item.Film)
+                    .Include(item => item.Room));
         }
         [HttpGet("ScreeningNow")]
         public IEnumerable<Screening> GetNow()
         {
             return _context.Screenings
+                    .Include(item => item.Film)
+                    .Include(item => item.Room)
                     .AsEnumerable()
                     .Where(item => item.BeginsAt > DateTime.Now
                             && (item.BeginsAt - new TimeSpan(0, _context.Films.Find(item.FilmID).ScreeningTime, 0)) < DateTime.Now);

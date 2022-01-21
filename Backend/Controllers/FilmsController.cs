@@ -114,9 +114,24 @@ namespace Backend.Controllers
             if (day.HasValue is false)
                 return BadRequest(new ArgumentNullException("You have to provide viable day as argument."));
 
-            var screeningsThatDay = _context.Screenings.Where(item => item.BeginsAt.Day == day.Value.Day);
+            var screeningsThatDay = _context.Screenings.Where(item => item.BeginsAt.Date == day.Value.Date);
 
-            return screeningsThatDay.Aggregate(0, (sum, item) => sum + item.SoldTickets);
+            return screeningsThatDay.AsEnumerable().Aggregate(0, (sum, item) => sum + item.SoldTickets);
+        }
+        [HttpPost("FilmPopularity/list")]
+        public ActionResult<ICollection<(DateTime day, int popularity)>> GetPopularityList([FromBody] IEnumerable<DateTime> days)
+        {
+            if (days is null)
+                return BadRequest(new ArgumentNullException("You have to provide viable day as argument."));
+
+            List<(DateTime day, int popularity)> result = new();
+            foreach (var day in days)
+            {
+                var screeningsThatDay = _context.Screenings.Where(item => item.BeginsAt.Date == day.Date).AsEnumerable();
+                int popularity = screeningsThatDay.Aggregate(0, (sum, item) => sum + item.SoldTickets);
+                result.Add((day, popularity));
+            }
+            return Ok(result);
         }
     }
 }
