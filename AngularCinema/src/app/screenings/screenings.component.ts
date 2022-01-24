@@ -3,6 +3,7 @@ import { ScreeningService } from 'src/services/screening.service';
 import { IScreening } from 'src/models/IScreening';
 import { DatePipe } from '@angular/common'
 import { LiteralExpr } from '@angular/compiler';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-screenings',
@@ -12,10 +13,15 @@ import { LiteralExpr } from '@angular/compiler';
 })
 export class ScreeningsComponent{
   // title = 'screening'
+  formGroup: FormGroup
   @Input() screenings: IScreening[] = [];
 
   today = new Date;
-  constructor(private _screeningService: ScreeningService, public datePipe: DatePipe) { }
+  constructor(private _screeningService: ScreeningService, public datePipe: DatePipe) { 
+    this.formGroup = new FormGroup({
+      date: new FormControl(null, Validators.required),
+    })
+  }
 
   getAvailableTickets(screening: IScreening) {
     return screening.room.capacity - screening.soldTickets
@@ -29,7 +35,10 @@ export class ScreeningsComponent{
   }
 
   todayScreenings(): void {
-    this._screeningService.getScreenings_InDay(this.today).subscribe(
+    let date: Date = this.formGroup.value?.date
+    if(!date)
+      return;
+    this._screeningService.getScreenings_InDay(date).subscribe(
       response => this.screenings = response,
       error => console.error(error)
     )
