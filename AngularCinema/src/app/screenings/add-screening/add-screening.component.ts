@@ -37,7 +37,6 @@ export class AddScreeningComponent implements OnInit {
       //   // date: this._formBuilder.control(''),
       // })
     })
-    console.warn(this.formGroup.get('beginsAt_date'))
   }
 
   ngOnInit(): void {

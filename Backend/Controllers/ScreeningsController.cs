@@ -107,8 +107,8 @@ namespace Backend.Controllers
                     .Include(item => item.Film)
                     .Include(item => item.Room)
                     .AsEnumerable()
-                    .Where(item => item.BeginsAt > DateTime.Now
-                            && (item.BeginsAt - new TimeSpan(0, _context.Films.Find(item.FilmID).ScreeningTime, 0)) < DateTime.Now);
+                    .Where(item => item.BeginsAt < DateTime.Now
+                            && (item.BeginsAt + new TimeSpan(0, _context.Films.Find(item.FilmID).ScreeningTime, 0)) > DateTime.Now);
         }
 
         [HttpPost("DEBUG_AddScreenings")]
