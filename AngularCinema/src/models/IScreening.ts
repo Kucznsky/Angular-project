@@ -12,17 +12,17 @@ export interface IScreening {
   beginsAt: Date
 }
 
-export function IScreening_beginsAt_Validator(): ValidatorFn {
+export function IScreening_beginsAt_date_Validator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     let value: Date = new Date(control.value)
-
-    let test: Date = new Date()
-    test.setUTCHours(1,0,0);
-    if(value.getTime() === test.getTime())
-      value.setUTCHours(23,59);
-    const isTooEarly = value < new Date()
-
-    console.log("value: ", value)
+    const isTooEarly = value.getDate() < new Date().getDate()
+    return isTooEarly ? { tooEarlyDate: { value: value } } : null;
+  };
+}
+export function IScreening_beginsAt_time_Validator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    let value: Date = new Date(control.value)
+    const isTooEarly = value.getTime() < new Date().getTime()
     return isTooEarly ? { tooEarlyDate: { value: value } } : null;
   };
 }

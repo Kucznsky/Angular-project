@@ -73,7 +73,7 @@ export class ScreeningService {
 
   public getScreenings_InDay(day: Date): Observable<IScreening[]> {
     return this._http.get<IScreening[]>(
-      `${ApiURL}Screenings/ScreeningsInDay?day=${day.toLocaleDateString()}`,
+      `${ApiURL}Screenings/ScreeningsInDay?day=${day.toISOString()}`,
       Credentials)
   }
   public getScreenings_Now(): Observable<IScreening[]> {

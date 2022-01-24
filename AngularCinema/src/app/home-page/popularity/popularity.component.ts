@@ -4,7 +4,7 @@ import { IFilm } from 'src/models/IFilm';
 import { FilmService } from 'src/services/film.service';
 import { IRoom } from 'src/models/IRoom';
 import { RoomService } from 'src/services/room.service';
-import { IScreening_beginsAt_Validator } from 'src/models/IScreening'
+import { IScreening_beginsAt_date_Validator } from 'src/models/IScreening'
 import { ScreeningService } from 'src/services/screening.service';
 import { IFilmPopularity } from 'src/models/IFilmPopularity';
 
