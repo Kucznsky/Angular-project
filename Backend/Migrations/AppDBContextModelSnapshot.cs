@@ -15,7 +15,7 @@ namespace Backend.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "5.0.12");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
 
             modelBuilder.Entity("Backend.Models.Film", b =>
                 {
@@ -34,7 +34,7 @@ namespace Backend.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Films", (string)null);
+                    b.ToTable("Films");
 
                     b.HasData(
                         new
@@ -55,12 +55,19 @@ namespace Backend.Migrations
                         {
                             ID = 3,
                             IsShowing = true,
-                            ScreeningTime = 157,
-                            Title = "Dom Gucci"
+                            ScreeningTime = 91,
+                            Title = "Bee Movie"
                         },
                         new
                         {
                             ID = 4,
+                            IsShowing = true,
+                            ScreeningTime = 121,
+                            Title = "Hot Fuzz"
+                        },
+                        new
+                        {
+                            ID = 5,
                             IsShowing = true,
                             ScreeningTime = 600,
                             Title = "Motywacja"
@@ -78,7 +85,7 @@ namespace Backend.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Rooms", (string)null);
+                    b.ToTable("Rooms");
 
                     b.HasData(
                         new
@@ -117,7 +124,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("RoomID");
 
-                    b.ToTable("Screenings", (string)null);
+                    b.ToTable("Screenings");
                 });
 
             modelBuilder.Entity("Backend.Models.TakenSeat", b =>
@@ -130,31 +137,37 @@ namespace Backend.Migrations
 
                     b.HasKey("ScreeningID", "SeatID");
 
-                    b.ToTable("TakenSeats", (string)null);
+                    b.ToTable("TakenSeats");
                 });
 
             modelBuilder.Entity("Backend.Models.Screening", b =>
                 {
-                    b.HasOne("Backend.Models.Film", null)
+                    b.HasOne("Backend.Models.Film", "Film")
                         .WithMany()
                         .HasForeignKey("FilmID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend.Models.Room", null)
+                    b.HasOne("Backend.Models.Room", "Room")
                         .WithMany()
                         .HasForeignKey("RoomID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Film");
+
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Backend.Models.TakenSeat", b =>
                 {
-                    b.HasOne("Backend.Models.Screening", null)
+                    b.HasOne("Backend.Models.Screening", "Screening")
                         .WithMany()
                         .HasForeignKey("ScreeningID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Screening");
                 });
 #pragma warning restore 612, 618
         }

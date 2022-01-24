@@ -36,7 +36,7 @@
                 <mat-error *ngIf="formGroup.controls['start'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
                 <mat-error *ngIf="formGroup.controls['end'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
             </mat-form-field>
-            <button mat-button type="submit" [disabled]='isInvalid'>
+            <button mat-button type="submit" [disabled]='isInvalid' class='link'>
                 View Popularity
             </button>
         </form>

@@ -46,8 +46,9 @@ namespace Backend.Data
             builder.Entity<Film>().HasData(
                     new Film { ID= 1, Title= "Diune", ScreeningTime= 156 },
                     new Film { ID= 2, Title= "The Intouchables", ScreeningTime= 112 },
-                    new Film { ID= 3, Title= "Dom Gucci", ScreeningTime= 157 },
-                    new Film { ID= 4, Title= "Motywacja", ScreeningTime= 600 }
+                    new Film { ID= 3, Title= "Bee Movie", ScreeningTime= 91 },
+                    new Film { ID= 4, Title= "Hot Fuzz", ScreeningTime= 121 },
+                    new Film { ID= 5, Title= "Motywacja", ScreeningTime= 600 }
                 );
             builder.Entity<Room>().HasData(
                     new Room { ID= 1, Capacity= 60 },
