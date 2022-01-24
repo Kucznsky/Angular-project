@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap, Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IFilm } from 'src/models/IFilm';
+import { IFilmPopularity } from 'src/models/IFilmPopularity';
 
 const ApiURL: string = "https://localhost:5001/"
 const Credentials = {
@@ -77,9 +78,9 @@ export class FilmService {
     )
   }
 
-  public getFilm_Popularity(days: Date[]): Observable<[Date, number][]> {
-    // return this._http.get<number>(`${ApiURL}Films/FilmPopularity?day=${day}`, Credentials)
-    return this._http.get<[Date, number][]>(`${ApiURL}Films/FilmPopularity/list`, Object.assign(Credentials, { body: days }))
+  public getFilm_Popularity(filmID: number, days: Date[]): Observable<IFilmPopularity[]> {
+    return this._http.post<IFilmPopularity[]>(`${ApiURL}Films/FilmPopularity/list?filmID=${filmID}`, days , Credentials)
+        // .pipe(tap(fetch => console.log("Fetched film popularity off of API: ", fetch)))
   }
 }
 

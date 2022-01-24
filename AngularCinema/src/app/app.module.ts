@@ -6,6 +6,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ import { PopularityComponent } from './home-page/popularity/popularity.component
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

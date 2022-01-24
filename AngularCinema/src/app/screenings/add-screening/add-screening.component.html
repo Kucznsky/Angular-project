@@ -9,9 +9,6 @@
                         {{film.title}}
                     </mat-option>
                 </mat-select>
-                <span *ngIf="formGroup.get('film')?.invalid" class="error">
-                    [Required]
-                </span>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="fill">
@@ -21,33 +18,18 @@
                         <pre>{{room.id}}   Capacity: {{room.capacity}}</pre>
                     </mat-option>
                 </mat-select>
-                <span *ngIf="formGroup.get('room')?.invalid" class="error">
-                    [Required]
-                </span>
             </mat-form-field>
             <br />
             <span class="center">
                 <input formControlName="beginsAt_date" id="date" type="date" />
             </span>
-            <span *ngIf="formGroup.get('beginsAt_date')?.invalid" class="error">
-                [Required]
-            </span>
-            <span *ngIf="formGroup.get('beginsAt_date')?.hasError('tooEarlyDate')" class="error">
-                [Too early]
-            </span>
+            <mat-error *ngIf="formGroup.get('beginsAt_date')?.hasError('tooEarlyDate')">[Too early]</mat-error>
             <br />
             <span class="center">
                 <input formControlName="beginsAt_time" type="time" />
             </span>
-            <span *ngIf="formGroup.get('beginsAt_time')?.hasError('required')" class="error">
-                [Required]
-            </span>
-            <span *ngIf="formGroup.get('beginsAt_time')?.hasError('tooEarlyDate')" class="error">
-                [Too early]
-            </span>
+            <mat-error *ngIf="formGroup.get('beginsAt_time')?.hasError('tooEarlyDate')">[Too early]</mat-error>
             <br />
-            <!-- <mat-form-field>
-            </mat-form-field> -->
             <br />
             <span class="center" *ngIf="isInvalid" class="error">
                 Fill the form!
@@ -63,10 +45,4 @@
             </span>
         </form>
     </fieldset>
-    <!-- <input type='' [form]> -->
-    <!-- <<mat-select placeholder="Placeholder" [(ngModel)]="selectedValue" name="item">
-        <mat-option *ngFor="let item of items" [value]="item.value">
-            {{item.viewValue}}
-        </mat-option>
-    </mat-select> -->
 </div>

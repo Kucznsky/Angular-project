@@ -119,19 +119,24 @@ namespace Backend.Controllers
             return screeningsThatDay.AsEnumerable().Aggregate(0, (sum, item) => sum + item.SoldTickets);
         }
         [HttpPost("FilmPopularity/list")]
-        public ActionResult<ICollection<(DateTime day, int popularity)>> GetPopularityList([FromBody] IEnumerable<DateTime> days)
+        public ActionResult<ICollection<FilmPopularity>> GetPopularityList(int filmID, [FromBody] IEnumerable<DateTime> days)
         {
             if (days is null)
                 return BadRequest(new ArgumentNullException("You have to provide viable day as argument."));
+            var film = _context.Films.Find(filmID);
+            if(film is null)
+                return BadRequest(new ArgumentNullException($"There is no film with id: {filmID}"));
 
-            List<(DateTime day, int popularity)> result = new();
+            List<FilmPopularity> result = new();
             foreach (var day in days)
             {
-                var screeningsThatDay = _context.Screenings.Where(item => item.BeginsAt.Date == day.Date).AsEnumerable();
+                var screeningsThatDay = _context.Screenings.Where(item => item.FilmID == film.ID && item.BeginsAt.Date == day.Date).AsEnumerable();
                 int popularity = screeningsThatDay.Aggregate(0, (sum, item) => sum + item.SoldTickets);
-                result.Add((day, popularity));
+                result.Add(new FilmPopularity(day, popularity));
             }
             return Ok(result);
         }
+
+        public record FilmPopularity(DateTime day, int popularity);
     }
 }
