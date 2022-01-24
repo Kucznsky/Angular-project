@@ -1,0 +1,25 @@
+.confirm_btn:active {
+  background: #b52e31;
+  top: 3px;
+  left: -3px;
+  box-shadow: -3px 3px 0 #97181a;
+  outline: white;
+}
+
+.confirm_btn:active::before {
+  border: solid 3px transparent;
+  border-right: solid 3px #97181a;
+  border-left-width: 0;
+  left: -3px;
+}
+
+.confirm_btn:active::after {
+  border: solid 3px transparent;
+  border-top: solid 3px #97181a;
+  border-bottom-width: 0;
+  bottom: -3px;
+}
+
+.something {
+  width: 100%;
+}

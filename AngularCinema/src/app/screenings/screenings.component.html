@@ -1,19 +1,21 @@
 <article>
     <section class="center">
         <form [formGroup]="formGroup">
-            <span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName='date'>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </span>
-            <span>
-                <button class='link' (click)="todayScreenings()" [disabled]='formGroup.invalid'>
-                    Date screenings <i class="far fa-calendar-alt"></i>
-                </button>
-            </span>
+            <div class="something">
+                <span class="date">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName='date'>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </span>
+                <span class="go_up_pls">
+                    <button class='link' (click)="todayScreenings()" [disabled]='formGroup.invalid'>
+                        Date screenings <i class="far fa-calendar-alt"></i>
+                    </button>
+                </span>
+            </div>
         </form>
         <span>
             <button class='link' (click)="currentScreenings()">

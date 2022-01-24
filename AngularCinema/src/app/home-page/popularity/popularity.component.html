@@ -15,33 +15,43 @@
         </form> -->
 
         <form [formGroup]='formGroup' (ngSubmit)='onSubmit()'>
-            <mat-form-field appearance="fill">
-                <mat-label>Film</mat-label>
-                <mat-select formControlName='film'>
-                    <mat-option *ngFor="let film of filmOptions" [value]="film.id">
-                        {{film.title}}
-                    </mat-option>
-                </mat-select>
-                <!-- <mat-error *ngIf="formGroup.get('film')?.invalid">Invalid movie</mat-error> -->
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input [formGroup]="formGroup" [rangePicker]="picker">
-                <input matStartDate formControlName="start" placeholder="Start date">
-                <input matEndDate formControlName="end" placeholder="End date">
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-            
-                <mat-error *ngIf="formGroup.controls['start'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
-                <mat-error *ngIf="formGroup.controls['end'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
-            </mat-form-field>
-            <button mat-button type="submit" [disabled]='isInvalid' class='link'>
-                View Popularity
-            </button>
+            <div class="something">
+                <span>
+                    <mat-form-field appearance="fill">
+                    <mat-label>Film</mat-label>
+                    <mat-select formControlName='film'>
+                        <mat-option *ngFor="let film of filmOptions" [value]="film.id">
+                            {{film.title}}
+                        </mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="formGroup.get('film')?.invalid">Invalid movie</mat-error> -->
+                    </mat-form-field>
+                </span>
+                <br>
+                <span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [formGroup]="formGroup" [rangePicker]="picker">
+                        <input matStartDate formControlName="start" placeholder="Start date">
+                        <input matEndDate formControlName="end" placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    
+                        <mat-error *ngIf="formGroup.controls['start'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                        <mat-error *ngIf="formGroup.controls['end'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                    </mat-form-field>
+                </span>
+            </div>
+            <br>
+            <span class='center'>
+                <button mat-button type="submit" [disabled]='isInvalid' class='confirm_btn'>
+                    View Popularity
+                </button>
+            </span>
         </form>
     </fieldset>
-    <div *ngFor="let day of popularity">
+    <div *ngFor="let day of popularity" class="center">
         {{day.day | date: 'd MMMM yyyy'}}: {{day.popularity}}
     </div>
 </div>
