@@ -157,6 +157,7 @@ chrome://flags/#allow-insecure-localhost
 
 # Instrukcja:
 
+<pre>
 ```sh
 # Żeby uruchomić Front-End:
 # - Przechodzimy do folderu AngularCinema.
@@ -176,3 +177,14 @@ dotnet ef database update
 # - Uruchamiamy aplikację ASP.NET
 dotnet run
 ```
+</pre>
+
+<style>
+body{
+    /* That Comic Sans is here in case you don't have my favourite font :< */
+    /* font-family: Consolas, Comic Sans; */
+    font-family: Consolas;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+</style>
